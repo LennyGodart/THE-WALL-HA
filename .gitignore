@@ -10,3 +10,6 @@ htmlcov/
 .venv/
 venv/
 *.egg-info/
+
+# Archive gehoeren nicht ins Repo, etwa ein Zip der Integration zum Hochladen.
+*.zip
