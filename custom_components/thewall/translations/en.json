@@ -1,0 +1,350 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Add THE WALL",
+        "description": "Enter the device ID from the device page of the website. THE WALL then shows a code on the panel, which you type in on the next page.",
+        "data": {
+          "device_id": "Device ID",
+          "server": "Server"
+        },
+        "data_description": {
+          "device_id": "It looks like wall-7f3a91.",
+          "server": "Only change this if you run your own server."
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "THE WALL found",
+        "description": "Add {name} ({uid}) to Home Assistant? After you submit, the panel shows a code for five minutes.\n\nServer: {server}"
+      },
+      "pair": {
+        "title": "Code on the panel",
+        "description": "Type in the code that {name} shows on the panel. It has {length} characters, upper or lower case does not matter.",
+        "data": {
+          "code": "Code"
+        },
+        "data_description": {
+          "code": "For example K7Q2XM."
+        }
+      },
+      "restart": {
+        "title": "New code",
+        "description": "The code on the panel no longer works. Submit, and {name} shows a new one."
+      },
+      "reauth_confirm": {
+        "title": "Pair {name} again",
+        "description": "The server no longer accepts this Home Assistant, for example because the link was removed on the website. Submit, and {name} shows a new code on the panel."
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach the server. Check the address and the connection.",
+      "device_offline": "The device has not been online for two minutes, so it cannot show a code. Check power and WiFi.",
+      "invalid_code": "Wrong code. {attempts_left} attempts left.",
+      "invalid_code_length": "The code has {length} characters.",
+      "invalid_device_id": "That is not a device ID. It looks like wall-7f3a91.",
+      "invalid_url": "That is not a web address.",
+      "pairing_expired": "The code has expired. It is valid for five minutes.",
+      "rate_limited": "Too many attempts. Wait a few minutes and try again.",
+      "too_many_attempts": "Five wrong codes. This code no longer works.",
+      "unknown": "Unexpected error. Details are in the log.",
+      "unknown_device": "The server has no device with this ID."
+    },
+    "abort": {
+      "already_configured": "This device is already set up.",
+      "already_in_progress": "This device is already being set up.",
+      "invalid_discovery_info": "The device announced itself without a usable ID or server.",
+      "reauth_successful": "Paired again."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "online": {
+        "name": "Online"
+      },
+      "ringing": {
+        "name": "Ringing"
+      },
+      "timer_running": {
+        "name": "Timer running"
+      }
+    },
+    "button": {
+      "cancel_timers": {
+        "name": "Cancel timers"
+      },
+      "hide_note": {
+        "name": "Hide note"
+      },
+      "start_timer": {
+        "name": "Start timer"
+      },
+      "stop_ringing": {
+        "name": "Stop ringing"
+      }
+    },
+    "event": {
+      "timer": {
+        "name": "Timer",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "cancelled": "Cancelled",
+              "finished": "Finished",
+              "started": "Started"
+            }
+          },
+          "label": {
+            "name": "Label"
+          },
+          "timer_id": {
+            "name": "Timer ID"
+          },
+          "total": {
+            "name": "Duration"
+          }
+        }
+      }
+    },
+    "notify": {
+      "note": {
+        "name": "Note"
+      }
+    },
+    "number": {
+      "timer_duration": {
+        "name": "Timer duration"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Mode",
+        "state": {
+          "clock": "Clock",
+          "flight": "Flight radar",
+          "notes": "Notes",
+          "pixel": "Pixel editor",
+          "spotify": "Spotify",
+          "transit": "Departures",
+          "weather": "Weather"
+        }
+      }
+    },
+    "sensor": {
+      "aircraft_type": {
+        "name": "Aircraft type"
+      },
+      "airline": {
+        "name": "Airline",
+        "state_attributes": {
+          "icao": {
+            "name": "ICAO code"
+          }
+        }
+      },
+      "altitude": {
+        "name": "Altitude"
+      },
+      "callsign": {
+        "name": "Callsign",
+        "state_attributes": {
+          "icao24": {
+            "name": "ICAO 24-bit address"
+          },
+          "registration": {
+            "name": "Registration"
+          }
+        }
+      },
+      "distance": {
+        "name": "Distance"
+      },
+      "ground_speed": {
+        "name": "Ground speed"
+      },
+      "last_seen": {
+        "name": "Last seen"
+      },
+      "next_alarm": {
+        "name": "Next alarm"
+      },
+      "route": {
+        "name": "Route",
+        "state_attributes": {
+          "from": {
+            "name": "From"
+          },
+          "from_city": {
+            "name": "From city"
+          },
+          "to": {
+            "name": "To"
+          },
+          "to_city": {
+            "name": "To city"
+          }
+        }
+      },
+      "showing": {
+        "name": "Showing",
+        "state": {
+          "clock": "Clock",
+          "flight": "Flight radar",
+          "hello": "Greeting",
+          "notes": "Notes",
+          "off": "Off",
+          "pairing": "Pairing code",
+          "pixel": "Pixel editor",
+          "ring": "Ringing",
+          "spotify": "Spotify",
+          "transit": "Departures",
+          "weather": "Weather"
+        }
+      },
+      "timer": {
+        "name": "Timer",
+        "state_attributes": {
+          "count": {
+            "name": "Running timers"
+          },
+          "label": {
+            "name": "Label"
+          },
+          "timer_id": {
+            "name": "Timer ID"
+          },
+          "total": {
+            "name": "Duration"
+          }
+        }
+      },
+      "wifi_signal": {
+        "name": "WiFi signal"
+      }
+    },
+    "switch": {
+      "alarm": {
+        "name": "Alarm"
+      },
+      "rotation_clock": {
+        "name": "Rotation: Clock"
+      },
+      "rotation_flight": {
+        "name": "Rotation: Flight radar"
+      },
+      "rotation_notes": {
+        "name": "Rotation: Notes"
+      },
+      "rotation_other": {
+        "name": "Rotation: {mode}"
+      },
+      "rotation_spotify": {
+        "name": "Rotation: Spotify"
+      },
+      "rotation_transit": {
+        "name": "Rotation: Departures"
+      },
+      "rotation_weather": {
+        "name": "Rotation: Weather"
+      }
+    },
+    "text": {
+      "note_line1": {
+        "name": "Note line 1"
+      },
+      "note_line2": {
+        "name": "Note line 2"
+      }
+    },
+    "time": {
+      "alarm_time": {
+        "name": "Alarm time"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      }
+    }
+  },
+  "exceptions": {
+    "api_error": {
+      "message": "The THE WALL server answered with an error: {message}"
+    },
+    "cannot_connect": {
+      "message": "Cannot reach the THE WALL server: {error}"
+    },
+    "device_not_found": {
+      "message": "Device {device_id} does not belong to THE WALL."
+    },
+    "entry_not_found": {
+      "message": "Config entry {entry_id} does not belong to THE WALL."
+    },
+    "entry_not_loaded": {
+      "message": "{name} is not loaded."
+    },
+    "invalid_duration": {
+      "message": "A timer runs from 1 to {max} seconds."
+    },
+    "invalid_token": {
+      "message": "The THE WALL server no longer accepts this Home Assistant. Pair the device again."
+    },
+    "no_entries": {
+      "message": "THE WALL is not set up yet."
+    },
+    "no_update": {
+      "message": "There is no newer firmware for this device."
+    },
+    "rate_limited": {
+      "message": "Too many requests to the THE WALL server. Try again in a moment."
+    },
+    "target_required": {
+      "message": "Several THE WALL devices are set up. Pick one."
+    },
+    "too_many_timers": {
+      "message": "Five timers are already running. Cancel one first."
+    }
+  },
+  "services": {
+    "cancel_timer": {
+      "name": "Cancel timer",
+      "description": "Cancels one timer, or all timers when no ID is given.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Config entry",
+          "description": "Instead of the device, the config entry of the THE WALL."
+        },
+        "device_id": {
+          "name": "Device",
+          "description": "The THE WALL with the timer. Not needed with only one."
+        },
+        "id": {
+          "name": "Timer ID",
+          "description": "The ID from the response of start_timer or the timer_id attribute of the timer sensor. Empty cancels all timers."
+        }
+      }
+    },
+    "start_timer": {
+      "name": "Start timer",
+      "description": "Starts a timer on the panel. At most five run at the same time.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Config entry",
+          "description": "Instead of the device, the config entry of the THE WALL."
+        },
+        "device_id": {
+          "name": "Device",
+          "description": "The THE WALL that shows the timer. Not needed with only one."
+        },
+        "duration": {
+          "name": "Duration",
+          "description": "How long the timer runs, from one second to 24 hours."
+        },
+        "label": {
+          "name": "Label",
+          "description": "Shown next to the timer, at most 12 characters."
+        }
+      }
+    }
+  }
+}

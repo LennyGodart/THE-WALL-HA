@@ -1,0 +1,49 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+# tests/conftest.py loads the Home Assistant test plugin itself, after the
+# Windows shims in tests/windows_compat.py. Outside Windows they do nothing.
+addopts = "-p no:homeassistant"
+# Raised while Home Assistant and its libraries are imported, not by THE WALL.
+filterwarnings = [
+    "ignore:Inheritance class HomeAssistantApplication from web.Application is discouraged:DeprecationWarning",
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:backoff",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "B",
+    "C4",
+    "D",
+    "E",
+    "F",
+    "I",
+    "PIE",
+    "PT",
+    "RET",
+    "RUF",
+    "SIM",
+    "UP",
+    "W",
+]
+ignore = [
+    "D202",
+    "D203",
+    "D213",
+    "E501",
+    # Class level _attr_ lists and sets are how Home Assistant entities work.
+    "RUF012",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D103", "D401"]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["custom_components.thewall"]
+combine-as-imports = true

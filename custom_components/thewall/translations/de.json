@@ -1,0 +1,350 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "THE WALL hinzufügen",
+        "description": "Gib die Geräte-ID von der Geräteseite der Webseite ein. Danach zeigt das Panel einen Code, den du auf der nächsten Seite eintippst.",
+        "data": {
+          "device_id": "Geräte-ID",
+          "server": "Server"
+        },
+        "data_description": {
+          "device_id": "Sie sieht aus wie wall-7f3a91.",
+          "server": "Nur ändern, wenn du einen eigenen Server betreibst."
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "THE WALL gefunden",
+        "description": "{name} ({uid}) zu Home Assistant hinzufügen? Nach dem Absenden zeigt das Panel fünf Minuten lang einen Code.\n\nServer: {server}"
+      },
+      "pair": {
+        "title": "Code auf dem Panel",
+        "description": "Tippe den Code ein, den {name} auf dem Panel zeigt. Er hat {length} Zeichen, Groß- und Kleinschreibung spielt keine Rolle.",
+        "data": {
+          "code": "Code"
+        },
+        "data_description": {
+          "code": "Zum Beispiel K7Q2XM."
+        }
+      },
+      "restart": {
+        "title": "Neuer Code",
+        "description": "Der Code auf dem Panel gilt nicht mehr. Nach dem Absenden zeigt {name} einen neuen."
+      },
+      "reauth_confirm": {
+        "title": "{name} neu koppeln",
+        "description": "Der Server erkennt dieses Home Assistant nicht mehr, etwa weil die Kopplung auf der Webseite entfernt wurde. Nach dem Absenden zeigt {name} einen neuen Code auf dem Panel."
+      }
+    },
+    "error": {
+      "cannot_connect": "Der Server ist nicht erreichbar. Adresse und Verbindung prüfen.",
+      "device_offline": "Das Gerät war zwei Minuten nicht online und kann deshalb keinen Code zeigen. Strom und WLAN prüfen.",
+      "invalid_code": "Falscher Code. Noch {attempts_left} Versuche.",
+      "invalid_code_length": "Der Code hat {length} Zeichen.",
+      "invalid_device_id": "Das ist keine Geräte-ID. Sie sieht aus wie wall-7f3a91.",
+      "invalid_url": "Das ist keine Webadresse.",
+      "pairing_expired": "Der Code ist abgelaufen. Er gilt fünf Minuten.",
+      "rate_limited": "Zu viele Versuche. Ein paar Minuten warten und dann noch einmal.",
+      "too_many_attempts": "Fünf falsche Codes. Dieser Code gilt nicht mehr.",
+      "unknown": "Unerwarteter Fehler. Einzelheiten stehen im Protokoll.",
+      "unknown_device": "Der Server kennt kein Gerät mit dieser ID."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist schon eingerichtet.",
+      "already_in_progress": "Dieses Gerät wird gerade eingerichtet.",
+      "invalid_discovery_info": "Das Gerät hat sich ohne brauchbare ID oder Serveradresse gemeldet.",
+      "reauth_successful": "Wieder gekoppelt."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "online": {
+        "name": "Online"
+      },
+      "ringing": {
+        "name": "Klingelt"
+      },
+      "timer_running": {
+        "name": "Timer läuft"
+      }
+    },
+    "button": {
+      "cancel_timers": {
+        "name": "Timer abbrechen"
+      },
+      "hide_note": {
+        "name": "Notiz ausblenden"
+      },
+      "start_timer": {
+        "name": "Timer starten"
+      },
+      "stop_ringing": {
+        "name": "Klingeln beenden"
+      }
+    },
+    "event": {
+      "timer": {
+        "name": "Timer",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "cancelled": "Abgebrochen",
+              "finished": "Abgelaufen",
+              "started": "Gestartet"
+            }
+          },
+          "label": {
+            "name": "Bezeichnung"
+          },
+          "timer_id": {
+            "name": "Timer-ID"
+          },
+          "total": {
+            "name": "Dauer"
+          }
+        }
+      }
+    },
+    "notify": {
+      "note": {
+        "name": "Notiz"
+      }
+    },
+    "number": {
+      "timer_duration": {
+        "name": "Timerdauer"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Modus",
+        "state": {
+          "clock": "Uhr",
+          "flight": "Flugradar",
+          "notes": "Notizen",
+          "pixel": "Pixel-Editor",
+          "spotify": "Spotify",
+          "transit": "Nahverkehr",
+          "weather": "Wetter"
+        }
+      }
+    },
+    "sensor": {
+      "aircraft_type": {
+        "name": "Flugzeugtyp"
+      },
+      "airline": {
+        "name": "Airline",
+        "state_attributes": {
+          "icao": {
+            "name": "ICAO-Kürzel"
+          }
+        }
+      },
+      "altitude": {
+        "name": "Flughöhe"
+      },
+      "callsign": {
+        "name": "Rufzeichen",
+        "state_attributes": {
+          "icao24": {
+            "name": "ICAO-24-Bit-Adresse"
+          },
+          "registration": {
+            "name": "Kennzeichen"
+          }
+        }
+      },
+      "distance": {
+        "name": "Entfernung"
+      },
+      "ground_speed": {
+        "name": "Geschwindigkeit über Grund"
+      },
+      "last_seen": {
+        "name": "Zuletzt gesehen"
+      },
+      "next_alarm": {
+        "name": "Nächster Wecker"
+      },
+      "route": {
+        "name": "Strecke",
+        "state_attributes": {
+          "from": {
+            "name": "Von"
+          },
+          "from_city": {
+            "name": "Abflugort"
+          },
+          "to": {
+            "name": "Nach"
+          },
+          "to_city": {
+            "name": "Zielort"
+          }
+        }
+      },
+      "showing": {
+        "name": "Anzeige",
+        "state": {
+          "clock": "Uhr",
+          "flight": "Flugradar",
+          "hello": "Begrüßung",
+          "notes": "Notizen",
+          "off": "Aus",
+          "pairing": "Kopplungscode",
+          "pixel": "Pixel-Editor",
+          "ring": "Klingelt",
+          "spotify": "Spotify",
+          "transit": "Nahverkehr",
+          "weather": "Wetter"
+        }
+      },
+      "timer": {
+        "name": "Timer",
+        "state_attributes": {
+          "count": {
+            "name": "Laufende Timer"
+          },
+          "label": {
+            "name": "Bezeichnung"
+          },
+          "timer_id": {
+            "name": "Timer-ID"
+          },
+          "total": {
+            "name": "Dauer"
+          }
+        }
+      },
+      "wifi_signal": {
+        "name": "WLAN-Signal"
+      }
+    },
+    "switch": {
+      "alarm": {
+        "name": "Wecker"
+      },
+      "rotation_clock": {
+        "name": "Rotation: Uhr"
+      },
+      "rotation_flight": {
+        "name": "Rotation: Flugradar"
+      },
+      "rotation_notes": {
+        "name": "Rotation: Notizen"
+      },
+      "rotation_other": {
+        "name": "Rotation: {mode}"
+      },
+      "rotation_spotify": {
+        "name": "Rotation: Spotify"
+      },
+      "rotation_transit": {
+        "name": "Rotation: Nahverkehr"
+      },
+      "rotation_weather": {
+        "name": "Rotation: Wetter"
+      }
+    },
+    "text": {
+      "note_line1": {
+        "name": "Notiz Zeile 1"
+      },
+      "note_line2": {
+        "name": "Notiz Zeile 2"
+      }
+    },
+    "time": {
+      "alarm_time": {
+        "name": "Weckzeit"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      }
+    }
+  },
+  "exceptions": {
+    "api_error": {
+      "message": "Der Server von THE WALL meldet einen Fehler: {message}"
+    },
+    "cannot_connect": {
+      "message": "Der Server von THE WALL ist nicht erreichbar: {error}"
+    },
+    "device_not_found": {
+      "message": "Das Gerät {device_id} gehört nicht zu THE WALL."
+    },
+    "entry_not_found": {
+      "message": "Der Konfigurationseintrag {entry_id} gehört nicht zu THE WALL."
+    },
+    "entry_not_loaded": {
+      "message": "{name} ist nicht geladen."
+    },
+    "invalid_duration": {
+      "message": "Ein Timer läuft 1 bis {max} Sekunden."
+    },
+    "invalid_token": {
+      "message": "Der Server von THE WALL erkennt dieses Home Assistant nicht mehr. Das Gerät bitte neu koppeln."
+    },
+    "no_entries": {
+      "message": "THE WALL ist noch nicht eingerichtet."
+    },
+    "no_update": {
+      "message": "Für dieses Gerät gibt es keine neuere Firmware."
+    },
+    "rate_limited": {
+      "message": "Zu viele Anfragen an den Server von THE WALL. Gleich noch einmal versuchen."
+    },
+    "target_required": {
+      "message": "Es sind mehrere Geräte von THE WALL eingerichtet. Bitte eines wählen."
+    },
+    "too_many_timers": {
+      "message": "Es laufen schon fünf Timer. Erst einen abbrechen."
+    }
+  },
+  "services": {
+    "cancel_timer": {
+      "name": "Timer abbrechen",
+      "description": "Bricht einen Timer ab, ohne ID alle Timer.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Konfigurationseintrag",
+          "description": "Statt des Geräts der Konfigurationseintrag von THE WALL."
+        },
+        "device_id": {
+          "name": "Gerät",
+          "description": "Das Gerät mit dem Timer. Bei nur einem Gerät nicht nötig."
+        },
+        "id": {
+          "name": "Timer-ID",
+          "description": "Die ID aus der Antwort von start_timer oder aus dem Attribut timer_id des Timer-Sensors. Leer bricht alle Timer ab."
+        }
+      }
+    },
+    "start_timer": {
+      "name": "Timer starten",
+      "description": "Startet einen Timer auf dem Panel. Höchstens fünf laufen gleichzeitig.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Konfigurationseintrag",
+          "description": "Statt des Geräts der Konfigurationseintrag von THE WALL."
+        },
+        "device_id": {
+          "name": "Gerät",
+          "description": "Das Gerät, das den Timer zeigt. Bei nur einem Gerät nicht nötig."
+        },
+        "duration": {
+          "name": "Dauer",
+          "description": "Wie lange der Timer läuft, von einer Sekunde bis 24 Stunden."
+        },
+        "label": {
+          "name": "Bezeichnung",
+          "description": "Steht neben dem Timer, höchstens 12 Zeichen."
+        }
+      }
+    }
+  }
+}

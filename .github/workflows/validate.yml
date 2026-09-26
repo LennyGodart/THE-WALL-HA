@@ -1,0 +1,22 @@
+name: Validate
+
+# hassfest is the check Home Assistant runs on its own integrations, the HACS
+# action checks what HACS needs to install this repository.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hacs/action@main
+        with:
+          category: integration

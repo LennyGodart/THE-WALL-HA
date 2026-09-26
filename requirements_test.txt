@@ -1,0 +1,2 @@
+# Pins Home Assistant 2026.9.3 and the matching test harness.
+pytest-homeassistant-custom-component==0.13.366

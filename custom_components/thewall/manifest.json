@@ -1,0 +1,13 @@
+{
+  "domain": "thewall",
+  "name": "THE WALL",
+  "codeowners": ["@LennyGodart"],
+  "config_flow": true,
+  "documentation": "https://github.com/LennyGodart/THE-WALL-HA",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/LennyGodart/THE-WALL-HA/issues",
+  "requirements": [],
+  "version": "0.1.0",
+  "zeroconf": ["_thewall._tcp.local."]
+}

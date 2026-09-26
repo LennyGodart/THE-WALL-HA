@@ -1,0 +1,52 @@
+start_timer:
+  name: Start timer
+  description: Starts a timer on the panel. At most five run at the same time.
+  fields:
+    device_id:
+      name: Device
+      description: The THE WALL that shows the timer. Not needed with only one.
+      selector:
+        device:
+          integration: thewall
+    config_entry_id:
+      name: Config entry
+      description: Instead of the device, the config entry of the THE WALL.
+      selector:
+        config_entry:
+          integration: thewall
+    duration:
+      name: Duration
+      description: How long the timer runs, from one second to 24 hours.
+      required: true
+      example: "00:05:00"
+      selector:
+        duration:
+    label:
+      name: Label
+      description: Shown next to the timer, at most 12 characters.
+      example: Pasta
+      selector:
+        text:
+
+cancel_timer:
+  name: Cancel timer
+  description: Cancels one timer, or all timers when no ID is given.
+  fields:
+    device_id:
+      name: Device
+      description: The THE WALL with the timer. Not needed with only one.
+      selector:
+        device:
+          integration: thewall
+    config_entry_id:
+      name: Config entry
+      description: Instead of the device, the config entry of the THE WALL.
+      selector:
+        config_entry:
+          integration: thewall
+    id:
+      name: Timer ID
+      description: The ID from the response of start_timer or the timer_id attribute of the timer sensor. Empty cancels all timers.
+      example: a1b2c3d4
+      selector:
+        text:

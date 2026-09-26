@@ -1,0 +1,139 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "ringing": {
+        "default": "mdi:bell-outline",
+        "state": {
+          "on": "mdi:bell-ring"
+        }
+      },
+      "timer_running": {
+        "default": "mdi:timer-outline"
+      }
+    },
+    "button": {
+      "cancel_timers": {
+        "default": "mdi:timer-off-outline"
+      },
+      "hide_note": {
+        "default": "mdi:eye-off-outline"
+      },
+      "start_timer": {
+        "default": "mdi:timer-play-outline"
+      },
+      "stop_ringing": {
+        "default": "mdi:bell-off-outline"
+      }
+    },
+    "event": {
+      "timer": {
+        "default": "mdi:timer-outline"
+      }
+    },
+    "light": {
+      "panel": {
+        "default": "mdi:dots-grid"
+      }
+    },
+    "notify": {
+      "note": {
+        "default": "mdi:message-text-outline"
+      }
+    },
+    "number": {
+      "timer_duration": {
+        "default": "mdi:timer-sand"
+      }
+    },
+    "select": {
+      "mode": {
+        "default": "mdi:view-carousel-outline"
+      }
+    },
+    "sensor": {
+      "aircraft_type": {
+        "default": "mdi:airplane"
+      },
+      "airline": {
+        "default": "mdi:airplane-takeoff"
+      },
+      "altitude": {
+        "default": "mdi:altimeter"
+      },
+      "callsign": {
+        "default": "mdi:airplane"
+      },
+      "distance": {
+        "default": "mdi:map-marker-distance"
+      },
+      "ground_speed": {
+        "default": "mdi:speedometer"
+      },
+      "last_seen": {
+        "default": "mdi:clock-check-outline"
+      },
+      "next_alarm": {
+        "default": "mdi:alarm"
+      },
+      "route": {
+        "default": "mdi:map-marker-path"
+      },
+      "showing": {
+        "default": "mdi:monitor-eye"
+      },
+      "timer": {
+        "default": "mdi:timer-outline"
+      }
+    },
+    "switch": {
+      "alarm": {
+        "default": "mdi:alarm",
+        "state": {
+          "off": "mdi:alarm-off"
+        }
+      },
+      "rotation_clock": {
+        "default": "mdi:sync"
+      },
+      "rotation_flight": {
+        "default": "mdi:sync"
+      },
+      "rotation_notes": {
+        "default": "mdi:sync"
+      },
+      "rotation_other": {
+        "default": "mdi:sync"
+      },
+      "rotation_spotify": {
+        "default": "mdi:sync"
+      },
+      "rotation_transit": {
+        "default": "mdi:sync"
+      },
+      "rotation_weather": {
+        "default": "mdi:sync"
+      }
+    },
+    "text": {
+      "note_line1": {
+        "default": "mdi:note-text-outline"
+      },
+      "note_line2": {
+        "default": "mdi:note-text-outline"
+      }
+    },
+    "time": {
+      "alarm_time": {
+        "default": "mdi:alarm"
+      }
+    }
+  },
+  "services": {
+    "cancel_timer": {
+      "service": "mdi:timer-off-outline"
+    },
+    "start_timer": {
+      "service": "mdi:timer-play-outline"
+    }
+  }
+}

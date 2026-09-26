@@ -1,0 +1,62 @@
+blueprint:
+  name: THE WALL, mode by voice
+  description: >-
+    Switch the mode of THE WALL with Assist. Say "show the clock on the wall"
+    or "zeig das Wetter an der Wand". Understood are flight radar, clock,
+    weather, departures, Spotify and notes, in English and German, plus a few
+    everyday words such as planes, time, music or Flugzeuge, Uhrzeit, Musik.
+  domain: automation
+  source_url: https://github.com/LennyGodart/THE-WALL-HA/blob/main/blueprints/thewall_voice_modes.yaml
+  homeassistant:
+    min_version: "2026.3.0"
+  input:
+    mode_select:
+      name: Mode select
+      description: The mode select of THE WALL, for example select.wall_mode.
+      selector:
+        entity:
+          filter:
+            - integration: thewall
+              domain: select
+
+triggers:
+  - trigger: conversation
+    command:
+      - "show [the] {wall_mode} on the wall"
+      - "put [the] {wall_mode} on the wall"
+      - "switch the wall to {wall_mode}"
+      - "zeig[e] [den|die|das] {wall_mode} an der Wand"
+      - "stell[e] die Wand auf {wall_mode}"
+
+variables:
+  mode_select: !input mode_select
+  german: "{{ 'wand' in (trigger.sentence | lower) }}"
+  wall_mode: >-
+    {% set words = {
+      'flight': 'flight', 'flights': 'flight', 'flight radar': 'flight',
+      'planes': 'flight', 'aircraft': 'flight',
+      'flugradar': 'flight', 'flüge': 'flight', 'flugzeuge': 'flight',
+      'clock': 'clock', 'time': 'clock', 'uhr': 'clock', 'uhrzeit': 'clock',
+      'weather': 'weather', 'wetter': 'weather',
+      'departures': 'transit', 'transit': 'transit', 'buses': 'transit',
+      'nahverkehr': 'transit', 'abfahrten': 'transit', 'busse': 'transit',
+      'spotify': 'spotify', 'music': 'spotify', 'musik': 'spotify',
+      'notes': 'notes', 'note': 'notes', 'notizen': 'notes', 'notiz': 'notes'
+    } %}
+    {{ words.get(trigger.slots.wall_mode | lower | trim, '') }}
+
+actions:
+  - if:
+      - condition: template
+        value_template: "{{ wall_mode in (state_attr(mode_select, 'options') or []) }}"
+    then:
+      - action: select.select_option
+        target:
+          entity_id: !input mode_select
+        data:
+          option: "{{ wall_mode }}"
+      - set_conversation_response: "{{ 'Erledigt.' if german else 'Done.' }}"
+    else:
+      - set_conversation_response: >-
+          {{ 'Diesen Modus gibt es auf der Wand nicht.' if german
+          else 'The wall has no such mode.' }}

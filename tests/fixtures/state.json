@@ -1,0 +1,53 @@
+{
+  "device": {
+    "uid": "wall-7f3a91",
+    "name": "Wall",
+    "model": "THE WALL 128x64",
+    "fw": "0.2.0",
+    "fw_latest": "0.2.1",
+    "fw_requested": false,
+    "online": true,
+    "last_seen": 1789999995,
+    "rssi": -54,
+    "test": false,
+    "url": "https://thewall.godart.lu/device/5"
+  },
+  "panel": {
+    "on": true,
+    "bright": 168,
+    "mode": "flight",
+    "rotation": ["flight", "clock"],
+    "showing": "flight",
+    "modes": [
+      {"id": "flight", "en": "Flight radar", "de": "Flugradar", "rotatable": true},
+      {"id": "clock", "en": "Clock", "de": "Uhr", "rotatable": true},
+      {"id": "weather", "en": "Weather", "de": "Wetter", "rotatable": true},
+      {"id": "transit", "en": "Departures", "de": "Nahverkehr", "rotatable": true},
+      {"id": "spotify", "en": "Spotify", "de": "Spotify", "rotatable": true},
+      {"id": "notes", "en": "Notes", "de": "Notizen", "rotatable": false}
+    ]
+  },
+  "note": {"line1": "DINNER AT 7", "line2": "BRING WINE", "front_left": 0, "max": 21},
+  "timers": [
+    {"id": "a1b2c3d4", "label": "Pasta", "total": 300, "end": 1790000300, "ringing": false}
+  ],
+  "alarm": {"on": false, "time": "07:00", "days": [1, 2, 3, 4, 5, 6, 7], "next": 1790050000, "ringing": false},
+  "ringing": false,
+  "flight": {
+    "callsign": "LGL4KP",
+    "reg": "LX-LQA",
+    "hex": "4d0123",
+    "airline": "LUXAIR",
+    "airline_icao": "LGL",
+    "type": "Dash 8-400",
+    "alt_ft": 11000,
+    "speed_kt": 280,
+    "dist_nm": 12.3,
+    "from": "LUX",
+    "to": "MUC",
+    "from_city": "Luxembourg",
+    "to_city": "Munich"
+  },
+  "time": 1790000000,
+  "rev": "12.3.0"
+}
