@@ -1,0 +1,4 @@
+# Textdateien mit LF speichern, Bilder nie umwandeln. Gilt auch im oeffentlichen
+# Repo THE-WALL-HA, das eine Kopie dieses Ordners ist.
+* text=auto
+*.png binary

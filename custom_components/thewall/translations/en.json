@@ -4,7 +4,7 @@
     "step": {
       "user": {
         "title": "Add THE WALL",
-        "description": "Enter the device ID from the device page of the website. THE WALL then shows a code on the panel, which you type in on the next page.",
+        "description": "Enter the device ID. It is on the website of THE WALL under Settings, in the Home Assistant section. THE WALL then shows a code on the panel, which you type in on the next page.",
         "data": {
           "device_id": "Device ID",
           "server": "Server"
@@ -48,7 +48,7 @@
       "rate_limited": "Too many attempts. Wait a few minutes and try again.",
       "too_many_attempts": "Five wrong codes. This code no longer works.",
       "unknown": "Unexpected error. Details are in the log.",
-      "unknown_device": "The server has no device with this ID."
+      "unknown_device": "The server has no device with this ID. The ID is on the website under Settings, in the Home Assistant section."
     },
     "abort": {
       "already_configured": "This device is already set up.",

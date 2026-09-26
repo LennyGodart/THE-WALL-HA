@@ -48,9 +48,11 @@ unter **Einstellungen > Geräte & Dienste** als gefunden. **Hinzufügen** wähle
 bestätigen, und das Panel zeigt fünf Minuten lang einen Code.
 
 **Mit der Geräte-ID.** Unter **Einstellungen > Geräte & Dienste > Integration
-hinzufügen** **THE WALL** wählen. Die Geräte-ID von der Geräteseite der Webseite
-eingeben, zum Beispiel `wall-7f3a91`. Den Server auf `https://thewall.godart.lu`
-lassen, außer du betreibst einen eigenen. Danach zeigt das Panel den Code.
+hinzufügen** **THE WALL** wählen und die Geräte-ID eingeben, zum Beispiel
+`wall-7f3a91`. Sie steht auf der Webseite von THE WALL unter **Einstellungen**
+im Abschnitt **Home Assistant**, mit Knopf zum Kopieren. Den Server auf
+`https://thewall.godart.lu` lassen, außer du betreibst einen eigenen. Danach
+zeigt das Panel den Code.
 
 Der Code hat 6 Zeichen. Groß- und Kleinschreibung spielt keine Rolle,
 Leerzeichen und Bindestriche werden ignoriert. Nach fünf falschen Codes gilt der
@@ -212,9 +214,10 @@ Anfragen", wartet die nächste Abfrage so lange, wie der Server verlangt.
 
 **Einstellungen > Geräte & Dienste > THE WALL**, Menü des Eintrags,
 **Löschen**. Home Assistant zieht dabei seinen Schlüssel auf dem Server zurück.
-Ist der Server in dem Moment nicht erreichbar, die Kopplung auf der Geräteseite
-der Webseite entfernen. Danach die Integration in HACS entfernen oder
-`custom_components/thewall` löschen und neu starten.
+Ist der Server in dem Moment nicht erreichbar, die Kopplung auf der Webseite
+unter **Einstellungen** im Abschnitt **Home Assistant** entfernen. Danach die
+Integration in HACS entfernen oder `custom_components/thewall` löschen und neu
+starten.
 
 ## Diagnose
 

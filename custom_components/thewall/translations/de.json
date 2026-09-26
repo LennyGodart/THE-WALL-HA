@@ -4,7 +4,7 @@
     "step": {
       "user": {
         "title": "THE WALL hinzufügen",
-        "description": "Gib die Geräte-ID von der Geräteseite der Webseite ein. Danach zeigt das Panel einen Code, den du auf der nächsten Seite eintippst.",
+        "description": "Gib die Geräte-ID ein. Sie steht auf der Webseite von THE WALL unter Einstellungen im Abschnitt Home Assistant. Danach zeigt das Panel einen Code, den du auf der nächsten Seite eintippst.",
         "data": {
           "device_id": "Geräte-ID",
           "server": "Server"
@@ -48,7 +48,7 @@
       "rate_limited": "Zu viele Versuche. Ein paar Minuten warten und dann noch einmal.",
       "too_many_attempts": "Fünf falsche Codes. Dieser Code gilt nicht mehr.",
       "unknown": "Unerwarteter Fehler. Einzelheiten stehen im Protokoll.",
-      "unknown_device": "Der Server kennt kein Gerät mit dieser ID."
+      "unknown_device": "Der Server kennt kein Gerät mit dieser ID. Die ID steht auf der Webseite unter Einstellungen im Abschnitt Home Assistant."
     },
     "abort": {
       "already_configured": "Dieses Gerät ist schon eingerichtet.",

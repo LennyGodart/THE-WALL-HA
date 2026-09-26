@@ -44,9 +44,10 @@ Assistant asks for a code, the panel shows it, you type it in.
 the panel shows a code for five minutes.
 
 **By device ID.** Under **Settings > Devices & services > Add integration**,
-pick **THE WALL**. Enter the device ID from the device page of the website, for
-example `wall-7f3a91`. Leave the server at `https://thewall.godart.lu` unless
-you run your own. Then the panel shows the code.
+pick **THE WALL** and enter the device ID, for example `wall-7f3a91`. It is on
+the website of THE WALL under **Settings**, in the **Home Assistant** section,
+with a copy button. Leave the server at `https://thewall.godart.lu` unless you
+run your own. Then the panel shows the code.
 
 The code has 6 characters. Upper and lower case do not matter, spaces and
 dashes are ignored. After five wrong codes the code stops working and Home
@@ -207,8 +208,9 @@ poll waits as long as the server asks.
 
 **Settings > Devices & services > THE WALL**, menu of the entry, **Delete**.
 Home Assistant revokes its token on the server. If the server cannot be reached
-at that moment, remove the link on the device page of the website. Then remove
-the integration in HACS, or delete `custom_components/thewall`, and restart.
+at that moment, remove the link on the website under **Settings**, in the
+**Home Assistant** section. Then remove the integration in HACS, or delete
+`custom_components/thewall`, and restart.
 
 ## Diagnostics
 
