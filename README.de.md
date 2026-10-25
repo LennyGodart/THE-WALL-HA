@@ -78,6 +78,7 @@ einem englischen Home Assistant heißen sie anders, siehe das
 | Modus | `select.wall_modus` | Nur die verfügbaren Modi: flight, clock, weather, transit, spotify, notes. Wer hier einen Modus wählt, will ihn sehen: eine laufende Rotation mit zwei oder mehr Modi endet dann, die Schalter *Rotation* schalten sie wieder an |
 | Rotation: *Modus* | `switch.wall_rotation_uhr` | Einer je Modus, der in die Rotation kann. Konfiguration, anfangs deaktiviert |
 | Wecker | `switch.wall_wecker` | Der eine Wecker des Geräts |
+| Ton | `switch.wall_ton` | Ob Timer und Wecker beim Klingeln piepen. Aus zeigt das Panel das Klingeln trotzdem, nur ohne Ton. Braucht Firmware 0.3.2 |
 | Weckzeit | `time.wall_weckzeit` | HH:MM. Die Wochentage stellst du auf der Webseite ein |
 | Notiz Zeile 1, Notiz Zeile 2 | `text.wall_notiz_zeile_1` | Je 21 Zeichen. Wer eine Zeile ändert, behält die andere |
 | Notiz | `notify.wall_notiz` | Für `notify.send_message`, siehe unten |

@@ -245,8 +245,9 @@ class TheWallClient:
         bright: int | None = None,
         mode: str | None = None,
         rotation: list[str] | None = None,
+        sound: bool | None = None,
     ) -> dict[str, Any]:
-        """Switch the panel, set brightness, mode or rotation."""
+        """Switch the panel, set brightness, mode, rotation or the ringing sound."""
         payload: dict[str, Any] = {}
         if on is not None:
             payload["on"] = on
@@ -256,6 +257,8 @@ class TheWallClient:
             payload["mode"] = mode
         if rotation is not None:
             payload["rotation"] = rotation
+        if sound is not None:
+            payload["sound"] = sound
         return await self._command("/panel", payload)
 
     async def set_note(self, line1: str, line2: str) -> dict[str, Any]:

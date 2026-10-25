@@ -73,6 +73,7 @@ German they differ, see the [German README](README.de.md#entitäten).
 | Mode | `select.wall_mode` | Only the modes available: flight, clock, weather, transit, spotify, notes. Picking a mode here means you want to see it: a running rotation of two or more modes ends, the *Rotation* switches turn it back on |
 | Rotation: *mode* | `switch.wall_rotation_clock` | One per mode that can rotate. Configuration, disabled by default |
 | Alarm | `switch.wall_alarm` | The one alarm of the device |
+| Sound | `switch.wall_sound` | Whether timers and the alarm beep when they ring. Off, the panel still shows the ringing, silently. Needs firmware 0.3.2 |
 | Alarm time | `time.wall_alarm_time` | HH:MM. The weekdays are set on the website |
 | Note line 1, Note line 2 | `text.wall_note_line_1` | 21 characters each. Changing one line keeps the other |
 | Note | `notify.wall_note` | For `notify.send_message`, see below |

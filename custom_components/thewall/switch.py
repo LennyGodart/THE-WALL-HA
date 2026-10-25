@@ -1,4 +1,4 @@
-"""Switches: the alarm, and one per mode that can be in the rotation."""
+"""Switches: the alarm, the ringing sound, and one per mode that can be in the rotation."""
 
 from __future__ import annotations
 
@@ -33,13 +33,15 @@ async def async_setup_entry(
     entry: TheWallConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Add the alarm switch and the rotation switches.
+    """Add the alarm and sound switches and the rotation switches.
 
     A mode that becomes available later, for example once Spotify is set up,
     gets its switch without a reload.
     """
     coordinator = entry.runtime_data
-    async_add_entities([TheWallAlarmSwitch(coordinator)])
+    async_add_entities(
+        [TheWallAlarmSwitch(coordinator), TheWallSoundSwitch(coordinator)]
+    )
     known: set[str] = set()
 
     @callback
@@ -81,6 +83,40 @@ class TheWallAlarmSwitch(TheWallEntity, SwitchEntity):
         """Clear the alarm."""
         client = self.coordinator.client
         await self.coordinator.async_command(lambda: client.set_alarm(on=False))
+
+
+class TheWallSoundSwitch(TheWallEntity, SwitchEntity):
+    """Whether timers and the alarm beep when they ring.
+
+    Off, the panel still shows the ringing, silently. Firmware 0.3.2 and later
+    follow it; a server without the setting makes the switch unavailable.
+    """
+
+    _attr_translation_key = "sound"
+
+    def __init__(self, coordinator: TheWallCoordinator) -> None:
+        """Create the switch."""
+        super().__init__(coordinator, "sound")
+
+    @property
+    def available(self) -> bool:
+        """Return False when the server does not know the setting."""
+        return super().available and isinstance(self.panel.get("sound"), bool)
+
+    @property
+    def is_on(self) -> bool:
+        """Return whether ringing makes a sound."""
+        return bool(self.panel.get("sound"))
+
+    async def async_turn_on(self, **kwargs: Any) -> None:
+        """Let timers and the alarm beep."""
+        client = self.coordinator.client
+        await self.coordinator.async_command(lambda: client.set_panel(sound=True))
+
+    async def async_turn_off(self, **kwargs: Any) -> None:
+        """Ring silently."""
+        client = self.coordinator.client
+        await self.coordinator.async_command(lambda: client.set_panel(sound=False))
 
 
 class TheWallRotationSwitch(TheWallEntity, SwitchEntity):

@@ -210,7 +210,7 @@ def test_manifest() -> None:
         "iot_class": "cloud_polling",
         "issue_tracker": "https://github.com/LennyGodart/THE-WALL-HA/issues",
         "requirements": [],
-        "version": "0.1.1",
+        "version": "0.1.2",
         "zeroconf": ["_thewall._tcp.local."],
     }
     # Home Assistant wants domain and name first, the rest sorted.

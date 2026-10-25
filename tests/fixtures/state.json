@@ -15,6 +15,7 @@
   "panel": {
     "on": true,
     "bright": 168,
+    "sound": true,
     "mode": "flight",
     "rotation": ["flight", "clock"],
     "showing": "flight",

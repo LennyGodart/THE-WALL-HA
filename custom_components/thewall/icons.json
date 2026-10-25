@@ -112,6 +112,12 @@
       },
       "rotation_weather": {
         "default": "mdi:sync"
+      },
+      "sound": {
+        "default": "mdi:volume-high",
+        "state": {
+          "off": "mdi:volume-off"
+        }
       }
     },
     "text": {

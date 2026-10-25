@@ -246,6 +246,9 @@
       },
       "rotation_weather": {
         "name": "Rotation: Wetter"
+      },
+      "sound": {
+        "name": "Ton"
       }
     },
     "text": {

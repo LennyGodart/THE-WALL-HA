@@ -1,4 +1,4 @@
-"""The alarm switch and the rotation switches."""
+"""The alarm switch, the sound switch and the rotation switches."""
 
 from __future__ import annotations
 
@@ -54,6 +54,33 @@ async def test_alarm_switch(
     await switch(hass, "switch.wall_alarm", False)
     assert wall.last_call == ("POST", "/alarm", {"on": False})
     assert hass.states.get("switch.wall_alarm").state == STATE_OFF
+
+
+async def test_sound_switch(
+    hass: HomeAssistant, init_integration: MockConfigEntry, wall: FakeWall
+) -> None:
+    """Ringing beeps by default; off sends sound false to the panel endpoint."""
+    assert hass.states.get("switch.wall_sound").state == STATE_ON
+
+    await switch(hass, "switch.wall_sound", False)
+    assert wall.last_call == ("POST", "/panel", {"sound": False})
+    assert hass.states.get("switch.wall_sound").state == STATE_OFF
+
+    await switch(hass, "switch.wall_sound", True)
+    assert wall.last_call == ("POST", "/panel", {"sound": True})
+    assert hass.states.get("switch.wall_sound").state == STATE_ON
+
+
+async def test_sound_switch_unavailable_on_older_server(
+    hass: HomeAssistant,
+    init_integration: MockConfigEntry,
+    wall: FakeWall,
+    frozen_clock: FrozenDateTimeFactory,
+) -> None:
+    """A server without the setting leaves the switch unavailable."""
+    del wall.state["panel"]["sound"]
+    await tick(hass, frozen_clock, 15)
+    assert hass.states.get("switch.wall_sound").state == STATE_UNAVAILABLE
 
 
 async def test_rotation_switches_disabled_by_default(

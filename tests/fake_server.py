@@ -196,7 +196,7 @@ class FakeWall:
 
     def _panel(self, data: dict[str, Any]) -> tuple[int, dict[str, Any]]:
         panel = self.state["panel"]
-        for key in ("on", "bright", "mode", "rotation"):
+        for key in ("on", "bright", "mode", "rotation", "sound"):
             if key in data:
                 panel[key] = data[key]
         if "on" in data:
