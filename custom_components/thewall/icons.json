@@ -85,6 +85,14 @@
         "default": "mdi:timer-outline"
       }
     },
+    "siren": {
+      "beep": {
+        "default": "mdi:bullhorn-outline",
+        "state": {
+          "on": "mdi:bullhorn"
+        }
+      }
+    },
     "switch": {
       "alarm": {
         "default": "mdi:alarm",

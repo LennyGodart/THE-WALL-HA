@@ -33,6 +33,7 @@
     {"id": "a1b2c3d4", "label": "Pasta", "total": 300, "end": 1790000300, "ringing": false}
   ],
   "alarm": {"on": false, "time": "07:00", "days": [1, 2, 3, 4, 5, 6, 7], "next": 1790050000, "ringing": false},
+  "beep": {"on": false, "until": null, "label": ""},
   "ringing": false,
   "flight": {
     "callsign": "LGL4KP",

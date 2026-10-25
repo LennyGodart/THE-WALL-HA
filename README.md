@@ -70,15 +70,16 @@ German they differ, see the [German README](README.de.md#entitäten).
 | Entity | ID | Notes |
 | --- | --- | --- |
 | Light | `light.wall` | The whole panel: on, off, brightness 1 to 255 as on the website |
-| Mode | `select.wall_mode` | Only the modes available: flight, clock, weather, transit, spotify, notes. Picking a mode here means you want to see it: a running rotation of two or more modes ends, the *Rotation* switches turn it back on |
+| Mode | `select.wall_mode` | Only the modes available: flight, clock, weather, transit, spotify, notes. Picking a mode here means you want to see it: a running rotation or priority of two or more modes ends, the *Rotation* switches turn the rotation back on |
 | Rotation: *mode* | `switch.wall_rotation_clock` | One per mode that can rotate. Configuration, disabled by default |
 | Alarm | `switch.wall_alarm` | The one alarm of the device |
 | Sound | `switch.wall_sound` | Whether timers and the alarm beep when they ring. Off, the panel still shows the ringing, silently. Needs firmware 0.3.2 |
+| Beep | `siren.wall_beep` | Makes the wall ring like a timer that ran out, with HOME ASSISTANT on the panel, for `duration` seconds or until turned off, 15 minutes at most. Beeps even when Sound is off, see below |
 | Alarm time | `time.wall_alarm_time` | HH:MM. The weekdays are set on the website |
 | Note line 1, Note line 2 | `text.wall_note_line_1` | 21 characters each. Changing one line keeps the other |
 | Note | `notify.wall_note` | For `notify.send_message`, see below |
 | Hide note | `button.wall_hide_note` | Takes the note out of the front |
-| Stop ringing | `button.wall_stop_ringing` | Dismisses ringing timers and the alarm |
+| Stop ringing | `button.wall_stop_ringing` | Dismisses ringing timers, the alarm and the beep |
 | Cancel timers | `button.wall_cancel_timers` | Cancels all timers |
 | Start timer | `button.wall_start_timer` | Starts a timer with the timer duration |
 | Timer duration | `number.wall_timer_duration` | 1 to 240 minutes, default 5. Stays in Home Assistant |
@@ -89,7 +90,7 @@ German they differ, see the [German README](README.de.md#entitäten).
 | Altitude, Ground speed, Distance | `sensor.wall_altitude` | In feet, knots and nautical miles. You can pick other units per entity |
 | Route | `sensor.wall_route` | For example `LUX - MUC`, with the cities as attributes. Unknown when the server has no route for the flight |
 | Online | `binary_sensor.wall_online` | Whether the device reaches the server. Diagnostic |
-| Ringing | `binary_sensor.wall_ringing` | A timer or the alarm rings |
+| Ringing | `binary_sensor.wall_ringing` | A timer, the alarm or the beep rings |
 | Timer running | `binary_sensor.wall_timer_running` | At least one timer counts down |
 | Last seen | `sensor.wall_last_seen` | Last poll of the device. Diagnostic |
 | WiFi signal | `sensor.wall_wifi_signal` | In dBm. Diagnostic, disabled by default |
@@ -117,6 +118,23 @@ data:
 With a title, the title is line 1 and the message line 2. Without a title the
 message is broken into two lines of 21 characters between words. The server
 writes umlauts and accents as plain letters, so ö becomes o.
+
+## Beeping from automations
+
+```yaml
+action: siren.turn_on
+target:
+  entity_id: siren.wall_beep
+data:
+  duration: 30
+```
+
+The wall rings like a timer that ran out: the whole panel shows HOME ASSISTANT,
+the tone is the timer tone. `duration` is in seconds. Without it the wall beeps
+until you turn the siren off, press the wheel or stop it on the website, 15
+minutes at most like any ringing; a longer duration is cut to that. It beeps
+even when **Sound** is off, that switch is for timers and the alarm. Turning the
+siren off ends only the beep, a ringing timer keeps ringing.
 
 ## Actions
 

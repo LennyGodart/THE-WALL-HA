@@ -68,6 +68,7 @@ class FakeWall:
         self._queue: dict[str, list[_Queued]] = {}
         self._mock = aioclient_mock
         self._timer_seq = 0
+        self._beep_end: int | None = None
         self.base = f"{server}{API_PATH}"
         self._base_path = URL(self.base).path
         pattern = re.compile("^" + re.escape(self.base) + "/")
@@ -127,7 +128,7 @@ class FakeWall:
         return int(dt_util.utcnow().timestamp())
 
     def snapshot(self) -> dict[str, Any]:
-        """Let timers ring or expire like the server does, return a copy."""
+        """Let timers ring or expire, end the beep like the server, return a copy."""
         now = self.now()
         self.state["time"] = now
         timers = []
@@ -138,8 +139,13 @@ class FakeWall:
             timers.append(timer)
         timers.sort(key=lambda timer: timer["end"])
         self.state["timers"] = timers
-        self.state["ringing"] = any(t["ringing"] for t in timers) or bool(
-            self.state["alarm"].get("ringing")
+        beep = self.state.get("beep")
+        if beep and beep["on"] and self._beep_end and now >= self._beep_end:
+            self._beep_stop()
+        self.state["ringing"] = (
+            any(t["ringing"] for t in timers)
+            or bool(self.state["alarm"].get("ringing"))
+            or bool(self.state.get("beep", {}).get("on"))
         )
         return copy.deepcopy(self.state)
 
@@ -249,7 +255,32 @@ class FakeWall:
     def _ring_stop(self, data: dict[str, Any]) -> tuple[int, dict[str, Any]]:
         self.state["timers"] = [t for t in self.state["timers"] if not t.get("ringing")]
         self.state["alarm"]["ringing"] = False
+        self._beep_stop()
         return self._ok()
+
+    def _beep(self, data: dict[str, Any]) -> tuple[int, dict[str, Any]]:
+        seconds = data.get("seconds")
+        if not isinstance(data.get("on"), bool) or (
+            seconds is not None and not 1 <= seconds <= 900
+        ):
+            return 422, error_body("invalid_value")
+        if not data["on"]:
+            self._beep_stop()
+            return self._ok()
+        now = self.now()
+        # Without seconds the server stops after 15 minutes, like any ringing.
+        self._beep_end = now + (seconds or 900)
+        self.state["beep"] = {
+            "on": True,
+            "until": now + seconds if seconds else None,
+            "label": str(data.get("label", "")),
+        }
+        return self._ok()
+
+    def _beep_stop(self) -> None:
+        if "beep" in self.state:
+            self.state["beep"] = {"on": False, "until": None, "label": ""}
+        self._beep_end = None
 
     def _firmware_update(self, data: dict[str, Any]) -> tuple[int, dict[str, Any]]:
         device = self.state["device"]

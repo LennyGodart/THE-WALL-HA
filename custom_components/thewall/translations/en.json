@@ -222,6 +222,11 @@
         "name": "WiFi signal"
       }
     },
+    "siren": {
+      "beep": {
+        "name": "Beep"
+      }
+    },
     "switch": {
       "alarm": {
         "name": "Alarm"

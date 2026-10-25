@@ -29,6 +29,7 @@ PLATFORMS = (
     "number",
     "select",
     "sensor",
+    "siren",
     "switch",
     "text",
     "time",
@@ -210,7 +211,7 @@ def test_manifest() -> None:
         "iot_class": "cloud_polling",
         "issue_tracker": "https://github.com/LennyGodart/THE-WALL-HA/issues",
         "requirements": [],
-        "version": "0.1.2",
+        "version": "0.1.3",
         "zeroconf": ["_thewall._tcp.local."],
     }
     # Home Assistant wants domain and name first, the rest sorted.

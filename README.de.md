@@ -75,15 +75,16 @@ einem englischen Home Assistant heißen sie anders, siehe das
 | Entität | ID | Hinweise |
 | --- | --- | --- |
 | Licht | `light.wall` | Das ganze Panel: an, aus, Helligkeit 1 bis 255 wie auf der Webseite |
-| Modus | `select.wall_modus` | Nur die verfügbaren Modi: flight, clock, weather, transit, spotify, notes. Wer hier einen Modus wählt, will ihn sehen: eine laufende Rotation mit zwei oder mehr Modi endet dann, die Schalter *Rotation* schalten sie wieder an |
+| Modus | `select.wall_modus` | Nur die verfügbaren Modi: flight, clock, weather, transit, spotify, notes. Wer hier einen Modus wählt, will ihn sehen: eine laufende Rotation oder Priorität mit zwei oder mehr Modi endet dann, die Schalter *Rotation* schalten die Rotation wieder an |
 | Rotation: *Modus* | `switch.wall_rotation_uhr` | Einer je Modus, der in die Rotation kann. Konfiguration, anfangs deaktiviert |
 | Wecker | `switch.wall_wecker` | Der eine Wecker des Geräts |
 | Ton | `switch.wall_ton` | Ob Timer und Wecker beim Klingeln piepen. Aus zeigt das Panel das Klingeln trotzdem, nur ohne Ton. Braucht Firmware 0.3.2 |
+| Piepen | `siren.wall_piepen` | Lässt die Wall klingeln wie einen abgelaufenen Timer, mit HOME ASSISTANT auf dem Panel, `duration` Sekunden lang oder bis zum Ausschalten, höchstens 15 Minuten. Piept auch, wenn Ton aus ist, siehe unten |
 | Weckzeit | `time.wall_weckzeit` | HH:MM. Die Wochentage stellst du auf der Webseite ein |
 | Notiz Zeile 1, Notiz Zeile 2 | `text.wall_notiz_zeile_1` | Je 21 Zeichen. Wer eine Zeile ändert, behält die andere |
 | Notiz | `notify.wall_notiz` | Für `notify.send_message`, siehe unten |
 | Notiz ausblenden | `button.wall_notiz_ausblenden` | Nimmt die Notiz aus dem Vordergrund |
-| Klingeln beenden | `button.wall_klingeln_beenden` | Beendet klingelnde Timer und den Wecker |
+| Klingeln beenden | `button.wall_klingeln_beenden` | Beendet klingelnde Timer, den Wecker und das Piepen |
 | Timer abbrechen | `button.wall_timer_abbrechen` | Bricht alle Timer ab |
 | Timer starten | `button.wall_timer_starten` | Startet einen Timer mit der Timerdauer |
 | Timerdauer | `number.wall_timerdauer` | 1 bis 240 Minuten, anfangs 5. Bleibt in Home Assistant |
@@ -94,7 +95,7 @@ einem englischen Home Assistant heißen sie anders, siehe das
 | Flughöhe, Geschwindigkeit über Grund, Entfernung | `sensor.wall_flughohe` | In Fuß, Knoten und Seemeilen. Andere Einheiten lassen sich je Entität wählen |
 | Strecke | `sensor.wall_strecke` | Zum Beispiel `LUX - MUC`, die Städte als Attribute. Unbekannt, wenn der Server keine Strecke zum Flug hat |
 | Online | `binary_sensor.wall_online` | Ob das Gerät den Server erreicht. Diagnose |
-| Klingelt | `binary_sensor.wall_klingelt` | Ein Timer oder der Wecker klingelt |
+| Klingelt | `binary_sensor.wall_klingelt` | Ein Timer, der Wecker oder das Piepen klingelt |
 | Timer läuft | `binary_sensor.wall_timer_lauft` | Mindestens ein Timer zählt herunter |
 | Zuletzt gesehen | `sensor.wall_zuletzt_gesehen` | Letzter Abruf des Geräts. Diagnose |
 | WLAN-Signal | `sensor.wall_wlan_signal` | In dBm. Diagnose, anfangs deaktiviert |
@@ -122,6 +123,24 @@ data:
 Mit Titel ist der Titel Zeile 1 und die Nachricht Zeile 2. Ohne Titel wird die
 Nachricht zwischen den Wörtern auf zwei Zeilen zu 21 Zeichen verteilt. Der
 Server schreibt Umlaute und Akzente als einfache Buchstaben, aus ö wird o.
+
+## Piepen aus Automationen
+
+```yaml
+action: siren.turn_on
+target:
+  entity_id: siren.wall_piepen
+data:
+  duration: 30
+```
+
+Die Wall klingelt wie ein abgelaufener Timer: das ganze Panel zeigt HOME
+ASSISTANT, der Ton ist der des Timers. `duration` zählt in Sekunden. Ohne piept
+die Wall, bis du die Sirene ausschaltest, aufs Rad drückst oder auf der Webseite
+stoppst, wie jedes Klingeln höchstens 15 Minuten; eine längere Dauer wird darauf
+gekürzt. Sie piept auch, wenn **Ton** aus ist, der Schalter gilt für Timer und
+Wecker. Die Sirene auszuschalten beendet nur das Piepen, ein klingelnder Timer
+klingelt weiter.
 
 ## Aktionen
 

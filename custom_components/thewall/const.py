@@ -30,6 +30,8 @@ TIMER_LABEL_MAX: Final = 12
 TIMER_MAX_SECONDS: Final = 86400
 TIMER_DEFAULT_MINUTES: Final = 5
 TIMER_MAX_MINUTES: Final = 240
+# Any ringing ends after 15 minutes at the latest, the beep of the siren too.
+BEEP_MAX_SECONDS: Final = 900
 
 # Modes the server knows today. Entities read the available ones from the
 # state, this list only decides which ones have translated names.

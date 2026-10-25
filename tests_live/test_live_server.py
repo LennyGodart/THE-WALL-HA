@@ -103,7 +103,7 @@ def entity_id(hass: HomeAssistant, platform: str, uid: str, key: str) -> str:
 
 
 async def test_live_server(hass: HomeAssistant, socket_enabled: None) -> None:
-    """Pair, control, watch a timer ring, stop it and unpair, all for real."""
+    """Pair, control, watch a timer ring and stop it, beep, unpair, all for real."""
     uid = f"wall-live{uuid.uuid4().hex[:4]}"
     async with aiohttp.ClientSession() as http:
         device = Device(http, uid)
@@ -299,6 +299,37 @@ async def test_live_server(hass: HomeAssistant, socket_enabled: None) -> None:
         )
         assert hass.states.get(ringing).state == "off"
         assert (await device.frame())["pages"][0]["mode"] != "ring"
+
+        # The siren lets the wall beep with HOME ASSISTANT on the panel, also
+        # with the sound switch off, and stops it again.
+        await hass.services.async_call(
+            "switch",
+            "turn_off",
+            {"entity_id": entity_id(hass, "switch", uid, "sound")},
+            blocking=True,
+        )
+        siren = entity_id(hass, "siren", uid, "beep")
+        await hass.services.async_call(
+            "siren", "turn_on", {"entity_id": siren, "duration": 60}, blocking=True
+        )
+        assert hass.states.get(siren).state == "on"
+        assert hass.states.get(ringing).state == "on"
+        server = await server_state(http, token)
+        assert server["state"]["beep"]["until"]
+        frame = await device.frame()
+        assert frame["pages"][0]["mode"] == "ring"
+        texts = [op.get("s") for op in frame["pages"][0]["ops"] if op["t"] == "text"]
+        assert "HOME ASSISTANT" in texts
+        assert frame["ring"]["since"]
+        assert "sound" not in frame
+        await hass.services.async_call(
+            "siren", "turn_off", {"entity_id": siren}, blocking=True
+        )
+        assert hass.states.get(siren).state == "off"
+        frame = await device.frame()
+        assert frame["pages"][0]["mode"] != "ring"
+        assert "ring" not in frame
+        assert frame["sound"] == 0
 
         # No newer firmware on a development server: Home Assistant refuses the
         # install itself, before the entity is asked.

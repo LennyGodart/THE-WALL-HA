@@ -222,6 +222,11 @@
         "name": "WLAN-Signal"
       }
     },
+    "siren": {
+      "beep": {
+        "name": "Piepen"
+      }
+    },
     "switch": {
       "alarm": {
         "name": "Wecker"

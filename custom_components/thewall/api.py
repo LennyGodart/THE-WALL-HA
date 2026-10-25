@@ -302,8 +302,18 @@ class TheWallClient:
         return await self._command("/alarm", payload)
 
     async def stop_ringing(self) -> dict[str, Any]:
-        """Dismiss ringing timers and the ringing alarm."""
+        """Dismiss ringing timers, the ringing alarm and the beep."""
         return await self._command("/ring/stop")
+
+    async def beep(self, on: bool, seconds: int | None = None) -> dict[str, Any]:
+        """Let the wall beep like a timer that ran out, or stop that.
+
+        Without seconds it beeps until stopped, 15 minutes at most.
+        """
+        payload: dict[str, Any] = {"on": on}
+        if seconds is not None:
+            payload["seconds"] = seconds
+        return await self._command("/beep", payload)
 
     async def update_firmware(self) -> dict[str, Any]:
         """Ask the device to install the newest firmware on its next poll."""
